@@ -11,6 +11,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -20,28 +21,28 @@
         <div class="content-wrapper">
           <h1 id="city-name">Mykolaiv</h1>
 
-          <p id="current-date">Friday, March 10</p>
-          <p id="description">Cloudly</p>
+          <p id="date">Friday, March 10</p>
+          <p id="description" class="text-capitalize"></p>
 
-          <div class="row">
+          <div class="row mt-3">
             <div class="col-6">
               <div class="d-flex">
                 <img
                   src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
                   alt="cloudy icon"
-                  class="weather-icon"
+                  id="weather-icon"
                 />
 
-                <span class="temperature" id="temperature">15</span>
+                <span class="temperature" id="temperature"></span>
                 <span class="units">
-                  <strong> <a href="#" id="celsius-link">°C</a> |</strong>
-                  <a href="#" id="fahrenheit-link">F</a></span
+                  <strong> <a href="#" id="celsius-link">°C</a> </strong>
+                  <a href="#" id="fahrenheit-link">| F</a></span
                 >
               </div>
             </div>
             <div class="col-6">
-              <p>Humidity: <span id="humidity">31</span>%</p>
-              <p>Wind: <span id="wind"></span>5 km/h</p>
+              <p>Humidity: <span id="humidity"></span>%</p>
+              <p>Wind: <span id="wind"></span> km/h</p>
             </div>
           </div>
         </div>
