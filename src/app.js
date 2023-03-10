@@ -35,6 +35,8 @@ function formatDate() {
   return date.toLocaleDateString("en-US", options);
 }
 function displayWeatherConditions(response) {
+  document.querySelector("#city-name").innerHTML = response.data.name;
+  console.log(response.data.name);
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -63,11 +65,20 @@ function displayWeatherConditions(response) {
 document.querySelector("#date").innerHTML = formatDate();
 
 //API call
-let city = "Mykolaiv";
+function search(city) {
+  const apiKey = "acdafd58d2b7bf1eca6d5caa45fe2f0f";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-const apiKey = "acdafd58d2b7bf1eca6d5caa45fe2f0f";
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayWeatherConditions);
+}
 
-console.log(apiUrl);
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  search(city);
+}
 
-axios(apiUrl).then(displayWeatherConditions);
+const searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
+
+search("Mykolaiv");
