@@ -37,9 +37,10 @@ function formatDate() {
 function displayWeatherConditions(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
   console.log(response.data.name);
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+
+  celsiusTemperature = Math.round(response.data.main.temp);
+
+  document.querySelector("#temperature").innerHTML = celsiusTemperature;
 
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
@@ -78,7 +79,30 @@ function handleSubmit(event) {
   search(city);
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  temperatureElement.innerHTML = celsiusTemperature;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let celsiusTemperature = "";
+let temperatureElement = document.querySelector("#temperature");
+
 const searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
+
+const fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+const celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Mykolaiv");

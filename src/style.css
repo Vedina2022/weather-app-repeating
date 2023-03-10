@@ -42,8 +42,12 @@ p {
 }
 
 .units a {
-  text-decoration: none;
-  color: black;
   position: relative;
   top: 18px;
+  text-decoration: none;
+}
+
+.units .active {
+  color: black;
+  cursor: default;
 }
